@@ -28,6 +28,7 @@ class User(db.Model, UserMixin): # inherits from db.Model and UserMixin (usermix
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
+    api_key = db.Column(db.String(150))
     notes = db.relationship('Note') # will be able to access all the note the user has created
     flashcards = db.relationship('Flashcard') # will be able to access all the flashcards the user has created
     groups = db.relationship('Group') # will be able to access all the groups the user has created

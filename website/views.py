@@ -6,6 +6,7 @@ from flask_login import login_required, current_user
 from .models import User, Note, Flashcard
 from . import db
 import json
+from werkzeug.security import check_password_hash
 
 
 # means we have a bunch of URLs defined in here (this is what a blueprint is)
@@ -45,12 +46,14 @@ def process_output(flashcards):
     return front, back
         
 
-client = OpenAI(api_key="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")
+
 views = Blueprint('views', __name__) # setup blueprint for our flask app
 
 @views.route('/', methods=['GET', 'POST']) # takes us to our main page, whenever we hit this route, the function below will run
 @login_required # cannot get to home page unless we're logged in
 def home():
+    user = User.query.filter_by(id = current_user.id).first()
+    client = OpenAI(api_key=check_password_hash(user.api_key))#"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")
     if request.method == 'POST':
         note = request.form.get('note')
         
