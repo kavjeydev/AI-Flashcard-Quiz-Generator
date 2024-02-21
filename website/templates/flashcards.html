@@ -1,0 +1,15 @@
+{%extends "base.html"%} {% block title %} Your Flashcards {% endblock %}
+
+{% block content %}
+
+<h1 align="center">These are your created Flashcards.</h1>
+<ul class="list-group list-group-flush", id="flashcards" style="color: white;">
+    {% for flashcard in user.flashcards %}
+    <li class="list-group-item h-50 p-3 mb-2" style="background-color: rgb(34, 34, 34); color: white;">{{flashcard.front + "\n" + flashcard.back}}
+        <button type="button" class="close"  onClick="deleteCard({{ flashcard.id }})">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,33 @@
+{%extends "base.html"%} {% block title %} Content Creation {% endblock %}
+
+{% block content %}
+
+<h1 align="center">Paste your notes here</h1>
+<!-- <ul class="list-group list-group-flush", id="notes">
+    {% for note in user.notes %}
+    <li class="list-group-item p-3 mb-2 bg-dark text-white">{{note.data}}
+        <button type="button" class="close"  onClick="deleteNote({{ note.id }})">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </li>
+    {% endfor %}
+</ul> -->
+<form method="POST">
+    <textarea name="note" id="note" class="form-control" placeholder="Enter your notes" style="background-color: rgb(36, 36, 36); color: white;" required></textarea>
+    <br>
+    <br>
+    <textarea name="group" id="group" class="form-control" placeholder="Enter name for flashcards/quiz"  style="background-color: rgb(36, 36, 36); color: white;"required></textarea>
+    <br>
+    <select name="flash-select" id="flash-select" style="background-color: black; color: white; border-color: rgb(0, 140, 255);">
+        <option value="">--Please choose an option--</option>
+        <option value="quiz">Quiz</option>
+        <option value="flashcard">Flashcard</option>
+      </select>
+      
+    <div align="center">
+        <button type="submit" class="btn btn-primary" style="background-color: black;">
+            Submit Notes for Processing
+        </button>
+    </div>
+</form>
+{% endblock %}
